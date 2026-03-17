@@ -1,132 +1,1527 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Neighbors for a United Atlanta</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neighbors For a United Atlanta</title>
+  <meta name="description" content="Neighbors For a United Atlanta — Atlanta works when all of Atlanta works. Learn why the Neighborhood Reinvestment Initiative and TAD extensions matter." />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #17345f;
+      --navy-dark: #102441;
+      --navy-soft: #224a83;
+      --gold: #c9a84c;
+      --gold-soft: #f6e6b0;
+      --red: #b62626;
+      --red-dark: #8f1d1d;
+      --white: #ffffff;
+      --off: #f6f8fb;
+      --off-2: #eef2f6;
+      --line: #d7dee7;
+      --text: #16202c;
+      --muted: #5f6c7b;
+      --success-bg: #eef9f0;
+      --success-text: #1e6b34;
+      --warn-bg: #fff8eb;
+      --warn-text: #7b5700;
+      --danger-bg: #fff1f1;
+      --danger-text: #8b2020;
+      --shadow: 0 16px 40px rgba(16, 36, 65, 0.12);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1180px;
+    }
+
+    html { scroll-behavior: smooth; }
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--white);
+      color: var(--text);
       line-height: 1.6;
     }
 
+    a { color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 6px 22px rgba(16, 36, 65, 0.06);
+    }
+
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      text-decoration: none;
+      cursor: pointer;
+      min-width: 210px;
+    }
+
+    .logo-name {
+      display: block;
+      color: var(--navy);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      font-size: 1.02rem;
+    }
+
+    .logo-tag {
+      display: block;
+      color: var(--gold);
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 8px 11px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--navy);
+      border-radius: 999px;
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-tad,
+    .btn-cta,
+    .btn-primary,
+    .btn-secondary,
+    .btn-outline,
+    .btn-light {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 22px;
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s ease;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.76rem !important;
+      padding: 10px 16px !important;
+    }
+
+    .btn-cta:hover { background: var(--red-dark) !important; }
+
+    .btn-tad {
+      background: var(--navy) !important;
+      color: var(--white) !important;
+      font-size: 0.76rem !important;
+      padding: 10px 15px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-tad:hover { background: var(--navy-dark) !important; }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(182, 38, 38, 0.22);
+    }
+
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(23, 52, 95, 0.18);
+    }
+
+    .btn-secondary:hover { background: var(--navy-dark); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+
+    .btn-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-light {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-light:hover { background: rgba(255,255,255,0.22); }
+
+    .hamburger {
+      display: none;
+      border: 2px solid var(--navy);
+      background: none;
+      color: var(--navy);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 1.15rem;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      border-top: 1px solid var(--line);
+      background: var(--white);
+      padding: 12px 18px 18px;
+    }
+
+    .mobile-nav.open { display: block; }
+
+    .mobile-nav a {
+      display: block;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 700;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--off-2);
+      cursor: pointer;
+    }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
     .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
+      padding: 72px 0;
+    }
+
+    .section-tight { padding: 52px 0; }
+    .bg-off { background: var(--off); }
+    .bg-navy { background: var(--navy); color: var(--white); }
+    .text-center { text-align: center; }
+    .text-center p.lead { margin-left: auto; margin-right: auto; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 900;
+      font-size: 0.73rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--navy-dark);
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+    }
+
+    .bg-navy h1,
+    .bg-navy h2,
+    .bg-navy h3,
+    .hero h1,
+    .hero h2,
+    .hero h3,
+    .page-hero h1,
+    .page-hero h2,
+    .page-hero h3 { color: var(--white); }
+
+    h1 { font-size: clamp(2.4rem, 5vw, 4.9rem); font-weight: 900; }
+    h2 { font-size: clamp(1.85rem, 3vw, 3rem); font-weight: 900; margin-bottom: 16px; }
+    h3 { font-size: 1.24rem; font-weight: 850; margin-bottom: 10px; }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 18px;
     }
 
     .hero {
-      background: #0b1f3a;
-      color: white;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(201, 168, 76, 0.20), transparent 30%),
+        linear-gradient(135deg, rgba(16, 36, 65, 0.94), rgba(23, 52, 95, 0.92));
+      color: var(--white);
+      min-height: 690px;
+      display: flex;
+      align-items: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(16,36,65,0.84) 0%, rgba(16,36,65,0.54) 48%, rgba(16,36,65,0.20) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%23f1d57f" stop-opacity=".12"/><stop offset="1" stop-color="%23ffffff" stop-opacity="0"/></linearGradient></defs><rect width="1600" height="900" fill="%2317345f"/><g fill="none" stroke="url(%23g)" stroke-width="2"><path d="M0 720 C200 650 320 690 460 620 S730 530 900 600 1190 720 1600 590"/><path d="M0 780 C180 730 350 790 500 720 S840 650 1020 710 1260 800 1600 730"/><path d="M0 630 C170 560 310 590 450 540 S720 450 930 510 1210 610 1600 500"/></g><g fill="rgba(255,255,255,.06)"><rect x="80" y="510" width="90" height="220" rx="4"/><rect x="180" y="430" width="130" height="300" rx="4"/><rect x="325" y="360" width="70" height="370" rx="4"/><rect x="410" y="470" width="120" height="260" rx="4"/><rect x="545" y="280" width="80" height="450" rx="4"/><rect x="640" y="400" width="95" height="330" rx="4"/><rect x="750" y="230" width="180" height="500" rx="4"/><rect x="950" y="370" width="90" height="360" rx="4"/><rect x="1055" y="455" width="140" height="275" rx="4"/><rect x="1210" y="325" width="86" height="405" rx="4"/><rect x="1308" y="510" width="130" height="220" rx="4"/></g></svg>') center center / cover no-repeat;
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .hero-wrap {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: end;
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.86);
+      font-size: 1.08rem;
+      max-width: 700px;
+      margin-top: 18px;
+    }
+
+    .hero h1 span { color: var(--gold-soft); }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.92);
+      font-size: 0.92rem;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .hero-stat-board {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-stat-board h3 {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      color: var(--gold-soft);
+    }
+
+    .hero-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .mini-card .num {
+      font-size: 1.9rem;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--gold-soft);
+      margin-bottom: 8px;
+    }
+
+    .mini-card .label {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .mini-card .sub {
+      color: rgba(255,255,255,0.68);
+      font-size: 0.72rem;
+      margin-top: 4px;
+    }
+
+    .stats-bar {
+      background: linear-gradient(90deg, var(--gold-soft), #f9edc2);
+      border-top: 1px solid rgba(0,0,0,0.03);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 20px 0;
+    }
+
+    .stats-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
       text-align: center;
-      padding: 80px 20px;
     }
 
-    h1, h2, h3 {
-      margin-bottom: 15px;
+    .stat-num {
+      font-size: clamp(1.5rem, 3vw, 2.35rem);
+      font-weight: 900;
+      color: var(--navy-dark);
+      line-height: 1;
     }
 
-    .grid {
+    .stat-label {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--navy-dark);
+      font-weight: 800;
+      opacity: 0.84;
+      line-height: 1.35;
+    }
+
+    .grid-2,
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card,
+    .info-card,
+    .faq-card,
+    .event-card,
+    .toolkit-card,
+    .team-card,
+    .pillar,
+    .metric-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .card p,
+    .info-card p,
+    .faq-card p,
+    .event-card p,
+    .toolkit-card p,
+    .team-card p,
+    .pillar p,
+    .metric-card p { color: var(--muted); }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--off);
+      color: var(--navy);
+      font-size: 1.35rem;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--off);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 900;
+    }
+
+    .tag.red { background: var(--danger-bg); color: var(--danger-text); }
+    .tag.green { background: var(--success-bg); color: var(--success-text); }
+    .tag.gold { background: var(--warn-bg); color: var(--warn-text); }
+
+    .callout,
+    .highlight-box,
+    .mission-box,
+    .cta-band {
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .callout {
+      background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+      color: var(--white);
+    }
+
+    .callout h3,
+    .mission-box h3,
+    .cta-band h3 { color: var(--white); }
+
+    .callout p,
+    .mission-box p,
+    .cta-band p { color: rgba(255,255,255,0.86); }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff8eb, #fffdf7);
+      border: 1px solid #f0deb1;
+    }
+
+    .mission-box,
+    .cta-band {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: var(--white);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--off);
+      border: 1px solid var(--line);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 18px;
+      align-items: start;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .timeline-num {
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 900;
+      border-radius: 16px;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .comparison-card {
+      border-radius: 18px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .comparison-card.current {
+      border-top: 5px solid var(--gold);
+    }
+
+    .comparison-card.alt {
+      border-top: 5px solid var(--red);
+    }
+
+    .comparison-card.best {
+      border-top: 5px solid #198754;
+      background: linear-gradient(180deg, #fbfffc, #ffffff);
+    }
+
+    .comparison-amount {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy-dark);
+      margin: 10px 0;
+    }
+
+    .myth-fact {
+      display: grid;
+      gap: 18px;
+    }
+
+    .mf-card {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--white);
+    }
+
+    .mf-side {
+      padding: 22px 18px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mf-side.myth { background: var(--danger-bg); color: var(--danger-text); }
+    .mf-side.fact { background: var(--success-bg); color: var(--success-text); }
+    .mf-main { padding: 22px 24px; }
+
+    .faq-list { display: grid; gap: 14px; }
+
+    .faq-q {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 20px;
+      text-align: left;
+      color: var(--navy-dark);
+      font-size: 0.98rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(16,36,65,.06);
+      position: relative;
+    }
+
+    .faq-q::after {
+      content: '+';
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: var(--navy);
+    }
+
+    .faq-q.open::after { content: '–'; }
+    .faq-a { display: none; padding: 14px 18px 0 18px; color: var(--muted); }
+    .faq-a.open { display: block; }
+
+    .page-hero {
+      background: linear-gradient(135deg, rgba(16,36,65,.94), rgba(23,52,95,.9));
+      color: var(--white);
+      padding: 76px 0 62px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,168,76,.22), transparent 22%);
+      pointer-events: none;
+    }
+
+    .breadcrumb {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 16px auto 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 84px 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .event-date-box {
+      border-radius: 14px;
+      background: var(--off);
+      text-align: center;
+      padding: 10px 8px;
+      border: 1px solid var(--line);
+    }
+
+    .event-month {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: var(--red);
+    }
+
+    .event-day {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--navy-dark);
+      line-height: 1.05;
+      margin-top: 4px;
+    }
+
+    .event-title { font-weight: 850; color: var(--navy-dark); font-size: 1.08rem; }
+    .event-meta { color: var(--muted); font-size: 0.84rem; margin-top: 4px; }
+    .event-tag {
+      background: var(--off);
+      color: var(--navy);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .notify-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .notify-form input {
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: none;
+      font: inherit;
+    }
+
+    .notify-form button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font: inherit;
+      font-weight: 800;
+      background: var(--gold);
+      color: var(--navy-dark);
+      cursor: pointer;
+    }
+
+    .toolkit-grid,
+    .team-grid,
+    .pillar-grid,
+    .metric-grid,
+    .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
-    .card {
-      background: #f4f4f4;
-      padding: 20px;
-      border-radius: 8px;
+    .pillar {
+      position: relative;
+      overflow: hidden;
     }
 
-    .highlight {
-      font-weight: bold;
-      margin-top: 20px;
+    .pillar-num {
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--gold-soft);
+      font-weight: 900;
+      margin-bottom: 10px;
     }
 
+    .coming-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 900;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid #f0dca4;
+    }
+
+    .team-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: var(--off);
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .team-name { font-weight: 900; color: var(--navy-dark); }
+    .team-title { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+
+    .footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.82);
+      padding: 58px 0 22px;
+      margin-top: 0;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 28px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-brand p { margin-top: 14px; max-width: 350px; }
+    .footer h4 { color: var(--white); margin-bottom: 12px; font-size: 0.94rem; }
+    .footer a { display: block; text-decoration: none; color: rgba(255,255,255,0.8); margin: 8px 0; cursor: pointer; }
+    .footer a:hover { color: var(--gold-soft); }
+
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.82rem;
+    }
+
+    .social-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .mt-12 { margin-top: 12px; }
+    .mt-20 { margin-top: 20px; }
+    .mt-28 { margin-top: 28px; }
+    .mt-36 { margin-top: 36px; }
+    .mt-48 { margin-top: 48px; }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .hamburger { display: inline-flex; }
+      .hero-wrap,
+      .grid-2,
+      .two-col,
+      .comparison-grid,
+      .footer-top,
+      .stats-inner,
+      .grid-3,
+      .grid-4,
+      .event-card,
+      .mf-card {
+        grid-template-columns: 1fr !important;
+      }
+      .hero { min-height: auto; padding: 74px 0 52px; }
+      .hero-stat-board { margin-top: 8px; }
+      .mf-side { justify-content: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 720px) {
+      .section { padding: 58px 0; }
+      .container, .breadcrumb, .hero-wrap, .stats-inner { width: min(var(--max), calc(100% - 26px)); }
+      .header-inner { padding: 12px 13px; }
+      .hero-buttons { flex-direction: column; align-items: stretch; }
+      .hero-note { border-radius: 18px; }
+      .timeline-item, .event-card { gap: 12px; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .notify-form { grid-template-columns: 1fr; }
+      .mini-card .num { font-size: 1.6rem; }
+      .logo-name { font-size: 0.92rem; }
+    }
   </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>A Stronger Atlanta Starts in Every Neighborhood</h1>
-  <p>
-    The Neighborhood Reinvestment Initiative invests in areas that have experienced decades of disinvestment —
-    strengthening communities, growing the tax base, and benefiting the entire city.
-  </p>
-</section>
+<header>
+  <div class="header-inner">
+    <a class="logo" onclick="showPage('home')">
+      <span class="logo-name">NEIGHBORS FOR A UNITED ATLANTA</span>
+      <span class="logo-tag">Atlanta Works When All of Atlanta Works.</span>
+    </a>
+    <nav>
+      <a onclick="showPage('home')" id="nav-home">Home</a>
+      <a onclick="showPage('why')" id="nav-why">Why It Matters</a>
+      <a onclick="showPage('investment')" id="nav-investment">The Investment Case</a>
+      <a onclick="showPage('action')" id="nav-action">Take Action</a>
+      <a onclick="showPage('toolkit')" id="nav-toolkit">Toolkit</a>
+      <a onclick="showPage('events')" id="nav-events">Events</a>
+      <a onclick="showPage('about')" id="nav-about">About</a>
+      <a onclick="showPage('why')" class="btn-tad">How TADs Work</a>
+      <a onclick="showPage('action')" class="btn-cta">Take Action</a>
+    </nav>
+    <button class="hamburger" onclick="toggleMobile()">☰</button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a onclick="showPage('home');toggleMobile()">Home</a>
+    <a onclick="showPage('why');toggleMobile()">Why It Matters</a>
+    <a onclick="showPage('investment');toggleMobile()">The Investment Case</a>
+    <a onclick="showPage('action');toggleMobile()">Take Action</a>
+    <a onclick="showPage('toolkit');toggleMobile()">Toolkit</a>
+    <a onclick="showPage('events');toggleMobile()">Events</a>
+    <a onclick="showPage('about');toggleMobile()">About</a>
+    <a onclick="showPage('why');toggleMobile()" class="btn-tad" style="margin-top:14px; text-align:center;">How TADs Work</a>
+    <a onclick="showPage('action');toggleMobile()" class="btn-cta" style="margin-top:10px; text-align:center;">Take Action</a>
+  </div>
+</header>
 
-<!-- HOW TADS WORK -->
-<section class="section">
-  <h2>How a Tax Allocation District Works</h2>
-  <p>A TAD reinvests local growth back into the neighborhood where it happens.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>1. Neighborhood Needs Investment</h3>
-      <p>Some parts of Atlanta have gone decades without the infrastructure, housing, and services needed to thrive.</p>
+<!-- ═══════════════════════════════════ HOME ═══════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-wrap">
+      <div>
+        <div class="eyebrow">Neighbors For a United Atlanta</div>
+        <h1>A stronger Atlanta <span>starts in every neighborhood.</span></h1>
+        <p>
+          The Neighborhood Reinvestment Initiative exists because not every part of Atlanta has shared equally in the city’s growth. Tax Allocation District extensions are the most scalable way to fund reinvestment by using local growth to pay for local improvements — without raising taxes.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn-primary" onclick="showPage('action')">Take Action</a>
+          <a class="btn-light" onclick="showPage('why')">Learn How It Works</a>
+        </div>
+        <div class="hero-note"><strong>Bottom line:</strong> the question is not whether reinvestment happens. The question is how Atlanta pays for it.</div>
+      </div>
+      <div class="hero-stat-board">
+        <h3>What supporters need to know</h3>
+        <div class="hero-mini-grid">
+          <div class="mini-card"><div class="num">$0</div><div class="label">New taxes required</div><div class="sub">TADs do not increase tax rates.</div></div>
+          <div class="mini-card"><div class="num">8</div><div class="label">Active TADs</div><div class="sub">Existing tools already in place.</div></div>
+          <div class="mini-card"><div class="num">7</div><div class="label">Initial focus areas</div><div class="sub">Pilot neighborhoods, citywide benefits.</div></div>
+          <div class="mini-card"><div class="num">3x</div><div class="label">Private leverage</div><div class="sub">Public dollars can unlock more investment.</div></div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>2. Growth Funds Improvements</h3>
-      <p>As development happens, property values increase. TADs capture that growth and reinvest it locally.</p>
-    </div>
-
-    <div class="card">
-      <h3>3. The Whole City Benefits</h3>
-      <p>Stronger neighborhoods increase Atlanta’s overall tax base — supporting schools, infrastructure, and services.</p>
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div><div class="stat-num">$5.5B</div><div class="stat-label">Identified citywide investment opportunities</div></div>
+      <div><div class="stat-num">7</div><div class="stat-label">Initial focus areas in the NRI strategy</div></div>
+      <div><div class="stat-num">8</div><div class="stat-label">Active TADs already in Atlanta</div></div>
+      <div><div class="stat-num">$0</div><div class="stat-label">New taxes required to use TADs</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-label">Years of projected extension under discussion</div></div>
     </div>
   </div>
 
-  <p class="highlight">
-    TAD extensions do not raise taxes. They reinvest growth created within a district.
-  </p>
-</section>
-
-<!-- WHY IT MATTERS -->
-<section class="section">
-  <h2>Why This Matters</h2>
-  <p>
-    Not every part of Atlanta has shared equally in the city’s growth. Decades of uneven investment have left
-    gaps in infrastructure, housing, and opportunity. Addressing those gaps strengthens the entire city.
-  </p>
-</section>
-
-<!-- HARD QUESTIONS -->
-<section class="section">
-  <h2>Common Questions</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Does this raise taxes?</h3>
-      <p>No. TADs reinvest growth in property values — they do not increase tax rates.</p>
+  <!-- EDITABLE SECTION: HOME / TAD EXPLAINER -->
+  <section class="section bg-off">
+    <div class="container text-center">
+      <div class="section-label">How TADs Work</div>
+      <h2>Three steps. One simple idea.</h2>
+      <p class="lead">A Tax Allocation District reinvests local growth back into the area where it happens. It does not raise tax rates, and it does not require a new tax.</p>
+      <div class="grid-3 mt-36">
+        <div class="card">
+          <div class="card-icon">1</div>
+          <h3>Neighborhood needs investment</h3>
+          <p>Some communities experienced decades of disinvestment in housing, infrastructure, commercial corridors, and public amenities.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">2</div>
+          <h3>Growth helps fund improvements</h3>
+          <p>As investment and redevelopment increase property values, the <em>new growth above the baseline</em> is captured and reinvested locally.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">3</div>
+          <h3>The whole city benefits</h3>
+          <p>Stronger neighborhoods create a larger tax base, safer corridors, more housing, more business activity, and stronger long-term public finances.</p>
+        </div>
+      </div>
+      <div class="highlight-box mt-36">
+        <p><strong>TAD extensions do not raise taxes.</strong> They use growth created within a district to help pay for the improvements that growth makes possible.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Does this hurt schools?</h3>
-      <p>Over time, TADs expand the tax base, increasing long-term funding for schools.</p>
+  <!-- EDITABLE SECTION: HOME / FIRST QUESTIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-label">What Most Atlantans Want to Know</div>
+        <h2>Answer the three big questions first.</h2>
+        <p class="lead">Before people decide whether to support the NRI and TAD extensions, they usually want quick, plain-English answers.</p>
+      </div>
+      <div class="grid-3 mt-36">
+        <div class="card">
+          <div class="card-icon">💵</div>
+          <h3>Does this raise my taxes?</h3>
+          <p><strong>No.</strong> TADs do not increase tax rates. They reinvest future growth in value within a defined area.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏫</div>
+          <h3>Does this hurt schools?</h3>
+          <p><strong>No.</strong> The case for TADs is that they create growth that would not otherwise happen, while long-term value ultimately expands support for schools and public services.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌆</div>
+          <h3>Why should I care if I don’t live there?</h3>
+          <p>Because stronger neighborhoods mean a stronger city: more housing, more jobs, safer corridors, a broader tax base, and a more competitive Atlanta overall.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>What about displacement?</h3>
-      <p>NRI includes strategies to help residents stay in their communities as investment occurs.</p>
+  <!-- EDITABLE SECTION: HOME / CITYWIDE CASE -->
+  <section class="section bg-off">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-label">Why This Matters</div>
+          <h2>This is about more than one set of neighborhoods.</h2>
+          <p class="lead">Atlanta’s future depends on whether growth reaches the parts of the city that have waited the longest to share in it.</p>
+          <p>When communities remain disconnected from investment, the entire city bears the cost: weaker corridors, lower tax productivity, higher infrastructure needs, fewer housing options, and missed economic potential.</p>
+          <div class="pill-row">
+            <span class="pill">Stronger corridors</span>
+            <span class="pill">Better housing outcomes</span>
+            <span class="pill">Safer routes and public spaces</span>
+            <span class="pill">More business activity</span>
+            <span class="pill">Broader tax base</span>
+          </div>
+        </div>
+        <div class="callout">
+          <h3>One line to repeat</h3>
+          <p>The Neighborhood Reinvestment Initiative reinvests Atlanta’s growth into neighborhoods that have waited the longest to share in it.</p>
+          <div class="pill-row">
+            <span class="pill" style="background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.14); color:var(--white);">Use it on social</span>
+            <span class="pill" style="background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.14); color:var(--white);">Use it in meetings</span>
+            <span class="pill" style="background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.14); color:var(--white);">Use it in emails</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Is this a slush fund?</h3>
-      <p>Projects are reviewed and approved through public processes with oversight and accountability.</p>
+  <!-- EDITABLE SECTION: HOME / QUESTIONS WE'RE HEARING -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-label">Questions We’re Hearing</div>
+        <h2>Address the criticism directly.</h2>
+        <p class="lead">Opposition arguments are already circulating. This site should answer them clearly, not duck them.</p>
+      </div>
+      <div class="faq-list mt-36">
+        <div class="faq-card">
+          <button class="faq-q" onclick="toggleFaq(this)">TADs have been around for years. Where are the results?</button>
+          <div class="faq-a">Some TADs have generated visible results faster than others, especially where market pressure was already strong. The point of the NRI is to apply TAD financing more intentionally, alongside coordinated public investment, community planning, and anti-displacement tools so that underinvested areas can benefit too.</div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-q" onclick="toggleFaq(this)">Don’t TADs cause gentrification and displacement?</button>
+          <div class="faq-a">Growth without guardrails can increase displacement pressure. That is exactly why investment must be paired with affordability requirements, legacy resident protections, anti-displacement strategies, and community-led priorities. The goal is not displacement. The goal is for existing residents to benefit from reinvestment.</div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-q" onclick="toggleFaq(this)">Is this just a slush fund for politicians or developers?</button>
+          <div class="faq-a">No. If that concern exists, the answer is stronger transparency, clearer reporting, and public accountability — not walking away from one of the city’s most scalable funding tools. This site should keep pushing for open reporting, public oversight, and real project transparency.</div>
+        </div>
+        <div class="faq-card">
+          <button class="faq-q" onclick="toggleFaq(this)">Why now? What are the other funding options?</button>
+          <div class="faq-a">The NRI is moving forward regardless. The real question is whether Atlanta uses a self-financing tool tied to local growth, or leans more heavily on bonds, general fund dollars, or other citywide revenue sources. TADs are appealing because they are one of the most scalable ways to fund large capital investments without raising taxes.</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Why now?</h3>
-      <p>Atlanta’s growth creates an opportunity to invest in areas that have historically been left behind.</p>
+  <section class="section bg-off">
+    <div class="container text-center">
+      <div class="section-label">Take Action</div>
+      <h2>Build the coalition. Share the case. Ask for a yes vote.</h2>
+      <p class="lead">This campaign needs residents inside NRI areas, outside supporters, business leaders, neighborhood voices, and influencers using the same clear facts.</p>
+      <div class="card-grid mt-36">
+        <div class="card"><div class="card-icon">✉️</div><h3>Email decision-makers</h3><p>Use your own words, but keep it direct: TAD extensions are the most scalable self-financing option on the table.</p><div class="mt-20"><span class="coming-badge">Template coming soon</span></div></div>
+        <div class="card"><div class="card-icon">📣</div><h3>Share the message</h3><p>Use the toolkit for talking points, graphics, captions, and myth-vs-fact content that supporters can repost.</p><div class="mt-20"><a class="btn-outline" onclick="showPage('toolkit')">Open Toolkit</a></div></div>
+        <div class="card"><div class="card-icon">🤝</div><h3>Join the coalition</h3><p>Add your organization, business, or neighborhood group to the list of people publicly supporting smart, scalable reinvestment.</p><div class="mt-20"><a class="btn-secondary" onclick="showPage('about')">Get in Touch</a></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ WHY IT MATTERS ═══════════════════════════════════ -->
+<div class="page" id="page-why">
+  <div class="breadcrumb">Home › <span>Why It Matters</span></div>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Why It Matters</div>
+      <h1>Atlanta’s growth has not reached every part of Atlanta equally.</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82); max-width:720px;">The Neighborhood Reinvestment Initiative exists because some neighborhoods still face the consequences of long-term disinvestment in housing, infrastructure, health, economic opportunity, and public amenities.</p>
     </div>
   </div>
-</section>
 
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-label">Start Here</div>
+          <h2>The city’s case is simple.</h2>
+          <p class="lead">Not every neighborhood has shared equally in Atlanta’s success. The result is a city with extraordinary assets and extraordinary gaps.</p>
+          <p>That matters whether you live in Buckhead, Grove Park, Campbellton, Downtown, or anywhere else. Unbalanced growth affects economic mobility, public service demands, housing pressure, and the city’s long-term competitiveness.</p>
+          <div class="pill-row">
+            <span class="pill">Housing and affordability</span>
+            <span class="pill">Transit and mobility</span>
+            <span class="pill">Small business vitality</span>
+            <span class="pill">Public safety and public space</span>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <h3>What disinvestment looks like</h3>
+          <p>Disinvestment is not just an abstract policy term. It shows up as aging infrastructure, blight, weak commercial corridors, missing grocery options, longer commutes, underused land, and fewer opportunities for families and children.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-label">A Plain-English Theory of Change</div>
+        <h2>NRI works by combining projects, programs, and place.</h2>
+        <p class="lead">The strategy is not just about building things. It is about aligning physical investment with policies and programs that help people stay, grow, and benefit.</p>
+      </div>
+      <div class="grid-3 mt-36">
+        <div class="card"><div class="card-icon">🏗️</div><h3>Right projects</h3><p>Housing, grocery access, transit, trails, infrastructure, public realm improvements, and redevelopment of blighted or underused sites.</p></div>
+        <div class="card"><div class="card-icon">🧰</div><h3>Right programs</h3><p>Anti-displacement tools, workforce supports, small business help, financial stability programs, owner-occupied rehab, and resident protections.</p></div>
+        <div class="card"><div class="card-icon">📍</div><h3>Right places</h3><p>Focused implementation in areas where need, opportunity, and community leadership already exist — while keeping the larger citywide goal in view.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The Balance We Need</div>
+      <h2>Reinvestment must be paired with resident protection.</h2>
+      <div class="comparison-grid mt-28">
+        <div class="comparison-card alt">
+          <span class="tag red">Bad outcome</span>
+          <div class="comparison-amount">Growth alone</div>
+          <p>Private market activity arrives without public guardrails. Existing residents face pressure and the city reacts too late.</p>
+        </div>
+        <div class="comparison-card current">
+          <span class="tag gold">Incomplete outcome</span>
+          <div class="comparison-amount">No scalable tool</div>
+          <p>The city still has to invest, but at smaller scale, more slowly, and likely using less efficient funding mechanisms.</p>
+        </div>
+        <div class="comparison-card best">
+          <span class="tag green">Preferred outcome</span>
+          <div class="comparison-amount">Growth + protection</div>
+          <p>TAD financing is paired with affordability requirements, anti-displacement tools, and community-defined priorities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="section-label">Frequently Asked Questions</div>
+      <h2>Clearer answers help build trust.</h2>
+      <div class="myth-fact mt-28">
+        <div class="mf-card">
+          <div class="mf-side myth">Myth</div>
+          <div class="mf-main"><h3>“This only helps a few neighborhoods.”</h3><p>The NRI starts with initial focus areas, but the case for reinvestment is citywide. When neighborhoods gain housing, business activity, and stability, the city’s overall strength grows too.</p></div>
+        </div>
+        <div class="mf-card">
+          <div class="mf-side fact">Fact</div>
+          <div class="mf-main"><h3>This is a citywide economic and civic issue.</h3><p>Stronger corridors, broader tax productivity, safer routes, more housing choices, and better long-term public finances benefit the whole city, not just the neighborhoods where projects land first.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ INVESTMENT CASE ═══════════════════════════════════ -->
+<div class="page" id="page-investment">
+  <div class="breadcrumb">Home › <span>The Investment Case</span></div>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">The Investment Case</div>
+      <h1>The NRI still needs funding. TADs are the most scalable option.</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82); max-width:760px;">Opponents often debate whether reinvestment should happen at all. That is the wrong question. The practical question is how to fund it at scale.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-label">The Core Argument</div>
+        <h2>This work moves forward either way.</h2>
+        <p class="lead">If Atlanta is serious about the Neighborhood Reinvestment Initiative, then public investment will need to come from somewhere. TAD extensions matter because they use growth to help pay for that work instead of relying as heavily on broader city resources.</p>
+      </div>
+      <div class="comparison-grid mt-36">
+        <div class="comparison-card current">
+          <span class="tag gold">Status quo</span>
+          <div class="comparison-amount">Smaller scale</div>
+          <p>Without stronger tools, the city still invests — but with less flexibility, slower implementation, and fewer catalytic projects.</p>
+        </div>
+        <div class="comparison-card alt">
+          <span class="tag red">Alternative tools</span>
+          <div class="comparison-amount">More pressure elsewhere</div>
+          <p>Bonds, general fund dollars, and other tax-supported mechanisms can all play a role, but they shift pressure more broadly across city finances.</p>
+        </div>
+        <div class="comparison-card best">
+          <span class="tag green">TAD extension</span>
+          <div class="comparison-amount">Most scalable</div>
+          <p>TADs remain one of the strongest ways to fund large capital projects by capturing future growth generated within a district.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-label">Why Supporters Like TADs</div>
+          <h2>The fiscal case is straightforward.</h2>
+          <div class="timeline mt-28">
+            <div class="timeline-item"><div class="timeline-num">1</div><div><h3>No new tax rate</h3><p>TADs do not raise tax rates. That is the first thing many skeptical residents need to hear.</p></div></div>
+            <div class="timeline-item"><div class="timeline-num">2</div><div><h3>Future growth helps pay</h3><p>The financing is tied to growth in value within the district, which is why supporters call it a self-financing tool.</p></div></div>
+            <div class="timeline-item"><div class="timeline-num">3</div><div><h3>Projects can happen sooner</h3><p>Large capital needs often require a stronger financing mechanism than annual budgeting can provide.</p></div></div>
+          </div>
+        </div>
+        <div class="callout">
+          <h3>Supporter message</h3>
+          <p>TADs are not the only funding tool available. They are simply one of the few tools large enough to help deliver the scale of reinvestment the NRI calls for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Questions We Need to Answer Well</div>
+      <h2>Criticism is not a reason to avoid clarity.</h2>
+      <div class="myth-fact mt-28">
+        <div class="mf-card">
+          <div class="mf-side myth">Myth</div>
+          <div class="mf-main"><h3>“TADs are just a slush fund.”</h3><p>This is ultimately a trust and governance question. The answer is more transparency, stronger reporting, clear public approvals, and visible accountability.</p></div>
+        </div>
+        <div class="mf-card">
+          <div class="mf-side fact">Fact</div>
+          <div class="mf-main"><h3>The site should demand oversight and still make the case.</h3><p>It is completely reasonable to support TAD extensions while also insisting on stronger project transparency, regular reporting, and clear community accountability.</p></div>
+        </div>
+      </div>
+      <div class="myth-fact mt-20">
+        <div class="mf-card">
+          <div class="mf-side myth">Myth</div>
+          <div class="mf-main"><h3>“There is no rush.”</h3><p>The urgency comes from the city’s growth, rising land costs, aging affordable housing, and the simple fact that reinvestment is already on the table.</p></div>
+        </div>
+        <div class="mf-card">
+          <div class="mf-side fact">Fact</div>
+          <div class="mf-main"><h3>Delay has a cost.</h3><p>When the city waits, projects become more expensive, land gets harder to secure, affordability pressure increases, and neighborhoods remain vulnerable to market forces.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ TAKE ACTION ═══════════════════════════════════ -->
+<div class="page" id="page-action">
+  <div class="breadcrumb">Home › <span>Take Action</span></div>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Take Action</div>
+      <h1>Turn agreement into action.</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82); max-width:760px;">This campaign needs more than passive support. It needs people willing to email, share, recruit, and make the case publicly.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        <div class="card"><div class="card-icon">📧</div><h3>Email officials</h3><p>Use your own words. Keep it direct. Ask them to support the NRI and TAD extensions as the most scalable funding tool available.</p><div class="mt-20"><span class="coming-badge">Template coming soon</span></div></div>
+        <div class="card"><div class="card-icon">📱</div><h3>Share on social</h3><p>Use the toolkit to push out myth-vs-fact slides, captions, and simple TAD explainers your network can understand quickly.</p><div class="mt-20"><a class="btn-outline" onclick="showPage('toolkit')">Open Toolkit</a></div></div>
+        <div class="card"><div class="card-icon">🤝</div><h3>Bring a partner</h3><p>Coalition strength matters. Recruit neighborhood leaders, businesses, faith leaders, and residents who want a stronger citywide case.</p><div class="mt-20"><a class="btn-secondary" onclick="showPage('about')">Contact NFUA</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="section-label">Message Discipline</div>
+      <h2>If you only say three things, say these.</h2>
+      <div class="grid-3 mt-28">
+        <div class="card"><h3>TADs do not raise taxes.</h3><p>That is the first misconception to correct.</p></div>
+        <div class="card"><h3>The NRI still needs funding.</h3><p>The real question is whether Atlanta uses the most scalable tool available.</p></div>
+        <div class="card"><h3>A stronger city helps everyone.</h3><p>This is not a “their neighborhood” issue. It is a citywide strength issue.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ TOOLKIT ═══════════════════════════════════ -->
+<div class="page" id="page-toolkit">
+  <div class="breadcrumb">Home › <span>Toolkit</span></div>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Toolkit</div>
+      <h1>Facts you can share.</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82); max-width:760px;">This page is for supporters, influencers, coalition partners, and anyone who needs a quick, accurate way to explain the case for the NRI and TAD extensions.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="toolkit-grid">
+        <div class="toolkit-card"><div class="card-icon">📄</div><h3>One-page fact sheet</h3><p>A quick overview of what TADs are, why the NRI matters, and the three most common misconceptions.</p><div class="mt-20"><span class="coming-badge">PDF coming soon</span></div></div>
+        <div class="toolkit-card"><div class="card-icon">🖼️</div><h3>Social graphics</h3><p>Shareable visuals for Instagram, LinkedIn, Facebook, and email newsletters.</p><div class="mt-20"><span class="coming-badge">Graphic pack coming soon</span></div></div>
+        <div class="toolkit-card"><div class="card-icon">🗣️</div><h3>Talking points</h3><p>Short, repeatable language for media interviews, public meetings, neighborhood groups, and coalition partners.</p><div class="mt-20"><span class="coming-badge">Talking points coming soon</span></div></div>
+        <div class="toolkit-card"><div class="card-icon">❓</div><h3>Myth vs. fact</h3><p>Direct answers to the toughest questions we are hearing online and in community spaces.</p><div class="mt-20"><span class="coming-badge">FAQ pack coming soon</span></div></div>
+      </div>
+      <div class="cta-band mt-48">
+        <h3>What this page should become</h3>
+        <p>The toolkit should become the place outside supporters, businesses, neighborhood leaders, and influencers come to get the exact language city channels cannot always use.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ EVENTS ═══════════════════════════════════ -->
+<div class="page" id="page-events">
+  <div class="breadcrumb">Home › <span>Events</span></div>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Events</div>
+      <h1>Show up informed.</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82); max-width:720px;">Community meetings, town halls, briefings, and coalition gatherings are part of how support gets built. Add your name to stay updated as events are posted.</p>
+    </div>
+  </div>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="event-card">
+        <div class="event-date-box"><div class="event-month">TBD</div><div class="event-day">—</div></div>
+        <div><div class="event-title">Community information session</div><div class="event-meta">Location TBD • Time TBD</div><p>Open discussion about how the NRI works, why TAD extensions matter, and what residents are asking.</p></div>
+        <div><span class="event-tag">Community</span></div>
+      </div>
+      <div class="event-card mt-20">
+        <div class="event-date-box"><div class="event-month">TBD</div><div class="event-day">—</div></div>
+        <div><div class="event-title">Business and civic leaders briefing</div><div class="event-meta">Location TBD • Time TBD</div><p>A focused briefing on the economic and fiscal case for supporting the NRI and TAD extensions.</p></div>
+        <div><span class="event-tag">Briefing</span></div>
+      </div>
+      <div class="event-card mt-20">
+        <div class="event-date-box"><div class="event-month">TBD</div><div class="event-day">—</div></div>
+        <div><div class="event-title">Coalition organizing meeting</div><div class="event-meta">Location TBD • Time TBD</div><p>For residents, neighborhood leaders, and coalition partners who want to coordinate outreach and message discipline.</p></div>
+        <div><span class="event-tag">Organizing</span></div>
+      </div>
+
+      <div class="callout mt-48 text-center">
+        <h3>Get notified when events are posted</h3>
+        <p>Use this as a placeholder until your live signup form is ready.</p>
+        <div class="notify-form mt-20">
+          <input type="email" placeholder="Your email address" />
+          <button type="button">Notify me</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════ ABOUT ═══════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="breadcrumb">Home › <span>About</span></div>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">About NFUA</div>
+      <h1>A coalition for a stronger, more united Atlanta.</h1>
+      <p class="lead" style="color:rgba(255,255,255,.82); max-width:760px;">Neighbors For a United Atlanta brings together residents, business leaders, civic voices, and organizations that believe smart reinvestment strengthens the whole city.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-label">Our Story</div>
+          <h2>We are making the public case for citywide reinvestment.</h2>
+          <p class="lead">NFUA exists to build a coalition broad enough to make the case for the Neighborhood Reinvestment Initiative beyond official city channels.</p>
+          <p>That means speaking clearly to people inside NRI areas, people outside TADs, skeptical taxpayers, neighborhood advocates, businesses, and influencers who want factual language they can share.</p>
+        </div>
+        <div class="mission-box">
+          <h3>Mission</h3>
+          <p>To build visible, citywide support for strategic reinvestment that helps Atlanta grow more fairly, more sustainably, and more strongly.</p>
+          <p class="mt-12"><em>Atlanta works when all of Atlanta works.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="section-label">What We Stand For</div>
+      <h2>NFUA values</h2>
+      <div class="card-grid mt-28">
+        <div class="card"><div class="card-icon">🤝</div><h3>Unity</h3><p>Atlanta’s future depends on every part of the city being able to participate in its growth.</p></div>
+        <div class="card"><div class="card-icon">📊</div><h3>Evidence</h3><p>We make the case with facts, data, transparency, and direct answers to hard questions.</p></div>
+        <div class="card"><div class="card-icon">🌍</div><h3>Inclusion</h3><p>Support for reinvestment should not be limited by zip code, background, or political identity.</p></div>
+        <div class="card"><div class="card-icon">⚡</div><h3>Action</h3><p>This is not just an information hub. It is a coalition-building platform.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Get in Touch</div>
+      <h2>Contact NFUA</h2>
+      <div class="two-col mt-28">
+        <div class="card">
+          <h3>General inquiries</h3>
+          <p><strong>Email:</strong> info@neighborsforaunitedatl.org</p>
+          <p><strong>Website:</strong> neighborsforaunitedatl.org</p>
+          <p><strong>Social:</strong> @united4atl</p>
+        </div>
+        <div class="card">
+          <h3>Coalition partners</h3>
+          <p>If your organization, business, faith community, or neighborhood group wants to support the campaign, reach out to be listed as a partner.</p>
+          <div class="mt-20"><span class="coming-badge">Partner signup coming soon</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-name" style="color:white;">NEIGHBORS FOR A UNITED ATLANTA</span>
+        <span class="logo-tag">Atlanta Works When All of Atlanta Works.</span>
+        <p>A nonprofit coalition supporting the Neighborhood Reinvestment Initiative and the public case for strategic, citywide reinvestment.</p>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <a onclick="showPage('why')">Why It Matters</a>
+        <a onclick="showPage('investment')">The Investment Case</a>
+        <a onclick="showPage('toolkit')">Toolkit</a>
+      </div>
+      <div>
+        <h4>Act</h4>
+        <a onclick="showPage('action')">Take Action</a>
+        <a onclick="showPage('events')">Events</a>
+        <a onclick="showPage('about')">Join the Coalition</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="mailto:info@neighborsforaunitedatl.org">info@neighborsforaunitedatl.org</a>
+        <a href="#" onclick="showPage('about')">Contact NFUA</a>
+        <a href="#">@united4atl</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Neighbors For a United Atlanta. All rights reserved.</span>
+      <div class="social-links">
+        <span>@united4atl</span>
+        <span>Atlanta, Georgia</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('nav a[id^="nav-"]').forEach(function (a) { a.classList.remove('active'); });
+    var page = document.getElementById('page-' + id);
+    if (page) {
+      page.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    var navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+
+  function toggleMobile() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  function toggleFaq(btn) {
+    var answer = btn.nextElementSibling;
+    var isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(function (q) { q.classList.remove('open'); });
+    document.querySelectorAll('.faq-a').forEach(function (a) { a.classList.remove('open'); });
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  document.getElementById('nav-home').classList.add('active');
+</script>
 </body>
 </html>
