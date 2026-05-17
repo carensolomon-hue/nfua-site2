@@ -1307,6 +1307,7 @@
         <div class="card"><div class="card-icon">📧</div><h3>Email officials</h3><p>Use your own words. Keep it direct. Ask them to support the NRI and TAD extensions as the most scalable funding tool available.</p><div class="mt-20"><span class="coming-badge">Template coming soon</span></div></div>
         <div class="card"><div class="card-icon">📱</div><h3>Share on social</h3><p>Use the toolkit to push out myth-vs-fact slides, captions, and simple TAD explainers your network can understand quickly.</p><div class="mt-20"><a class="btn-outline" onclick="showPage('toolkit')">Open Toolkit</a></div></div>
         <div class="card"><div class="card-icon">🤝</div><h3>Bring a partner</h3><p>Coalition strength matters. Recruit neighborhood leaders, businesses, faith leaders, and residents who want a stronger citywide case.</p><div class="mt-20"><a class="btn-secondary" onclick="showPage('about')">Contact NFUA</a></div></div>
+        <div class="card" style="border:2px solid var(--gold); background:linear-gradient(135deg,#17345f 0%,#1e4a82 100%); color:white;"><div class="card-icon">✍️</div><h3 style="color:white;">Sign the Petition</h3><p style="color:rgba(255,255,255,.85);">Add your name. Call on Atlanta’s elected officials to support the Neighborhood Reinvestment Initiative and extend the TADs.</p><div class="mt-20"><a class="btn-primary" href="https://toolkit.neighborsforaunitedatlanta.org/petition.html" target="_blank">Read &amp; Sign</a></div></div>
       </div>
     </div>
   </section>
@@ -1472,6 +1473,7 @@
       <div>
         <h4>Act</h4>
         <a onclick="showPage('action')">Take Action</a>
+        <a href="https://toolkit.neighborsforaunitedatlanta.org/petition.html" target="_blank">Sign the Petition</a>
         <a onclick="showPage('events')">Events</a>
         <a onclick="showPage('about')">Join the Coalition</a>
       </div>
@@ -1522,6 +1524,31 @@
   }
 
   document.getElementById('nav-home').classList.add('active');
+
+  // Petition popup: show once per session
+  if (!sessionStorage.getItem('petitionPopupShown')) {
+    sessionStorage.setItem('petitionPopupShown', '1');
+    setTimeout(function() {
+      document.getElementById('petition-popup').style.display = 'flex';
+    }, 4000);
+  }
+
+  function closePetitionPopup() {
+    document.getElementById('petition-popup').style.display = 'none';
+  }
 </script>
+
+<!-- PETITION POPUP -->
+<div id="petition-popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(16,36,65,0.72);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:16px;max-width:480px;width:100%;padding:36px 32px;position:relative;box-shadow:0 24px 60px rgba(16,36,65,0.28);text-align:center;">
+    <button onclick="closePetitionPopup()" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#888;line-height:1;">&times;</button>
+    <div style="font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;">Community Petition</div>
+    <h2 style="font-size:1.35rem;color:#17345f;line-height:1.3;margin-bottom:14px;">Add your name to the petition.</h2>
+    <p style="font-size:0.9rem;color:#5f6c7b;line-height:1.7;margin-bottom:24px;">We are calling on Atlanta’s elected officials to support the Neighborhood Reinvestment Initiative and extend the TADs. Every name matters.</p>
+    <a href="https://toolkit.neighborsforaunitedatlanta.org/petition.html" target="_blank" style="display:inline-block;background:#17345f;color:#fff;font-weight:700;padding:13px 32px;border-radius:8px;text-decoration:none;font-size:0.95rem;margin-bottom:12px;">Read &amp; Sign the Petition</a>
+    <br>
+    <button onclick="closePetitionPopup()" style="background:none;border:none;color:#888;font-size:0.82rem;cursor:pointer;margin-top:6px;">Maybe later</button>
+  </div>
+</div>
 </body>
 </html>
